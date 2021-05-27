@@ -9,7 +9,10 @@ defmodule SMSFactor do
   end
 
   def client(token) do
-    middleware = [
+    middlewares = [
+      # This middleware should always run before Tesla.Middleware.JSON
+      # otherwise the response would not be decoded before parsing.
+      SMSFactor.Middleware.ParseResponse,
       {Tesla.Middleware.Headers,
        [
          {"Authorization", "Bearer " <> token},
@@ -19,6 +22,6 @@ defmodule SMSFactor do
       Tesla.Middleware.JSON
     ]
 
-    Tesla.client(middleware)
+    Tesla.client(middlewares)
   end
 end
