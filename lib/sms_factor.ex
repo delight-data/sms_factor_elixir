@@ -3,7 +3,7 @@ defmodule SMSFactor do
   Wrapper for SMSFactor API.
   """
 
-  def client(nil) do
+  def client do
     token = Application.fetch_env!(:sms_factor, :main_api_key)
     client(token)
   end
