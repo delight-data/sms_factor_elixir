@@ -15,7 +15,7 @@ defmodule SMSFactor.Middleware.ParseResponse do
     if status == 1 do
       {:ok, body}
     else
-      {:error, error_for(status, body["message"])}
+      {:error, error_for(status, body["details"])}
     end
   end
 
@@ -31,9 +31,9 @@ defmodule SMSFactor.Middleware.ParseResponse do
     -99 => "Unknown error"
   }
 
-  defp error_for(status, message) do
+  defp error_for(status, details) do
     reason = Map.get(@status_reasons, status, "Unhandled error code #{status}")
 
-    "#{reason} : #{message}"
+    "#{reason} : #{details}"
   end
 end
