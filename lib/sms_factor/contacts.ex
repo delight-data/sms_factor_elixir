@@ -57,13 +57,17 @@ defmodule SMSFactor.Contacts do
   @type contact_list_params() :: %{list: %{atom() => String.t()}}
 
   @spec add_contact(Tesla.Client.t(), contact_list_params()) :: Tesla.Env.result()
-  def add_contact(client, params), do: Tesla.get(client, "/list", params)
+  def add_contact(client, params), do: Tesla.post(client, "/list", params)
 
   @spec deduplicate_list(Tesla.Client.t(), integer()) :: Tesla.Env.result()
   def deduplicate_list(client, list_id), do: Tesla.put(client, "/list/deduplicate/#{list_id}")
 
   @spec remove_contact(Tesla.Client.t(), integer()) :: Tesla.Env.result()
   def remove_contact(client, contact_id), do: Tesla.delete(client, "/list/contact/#{contact_id}")
+
+  @spec remove_contact_from_blacklist(Tesla.Client.t(), integer()) :: Tesla.Env.result()
+  def remove_contact_from_blacklist(client, contact_id),
+    do: Tesla.delete(client, "/blacklist/contact/#{contact_id}")
 
   @spec update_contact(Tesla.Client.t(), integer(), contact_params()) :: Tesla.Env.result()
   def update_contact(client, contact_id, params) do
