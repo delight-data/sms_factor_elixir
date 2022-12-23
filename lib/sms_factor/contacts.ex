@@ -65,6 +65,10 @@ defmodule SMSFactor.Contacts do
   @spec remove_contact(Tesla.Client.t(), integer()) :: Tesla.Env.result()
   def remove_contact(client, contact_id), do: Tesla.delete(client, "/list/contact/#{contact_id}")
 
+  @spec remove_contact_from_blacklist(Tesla.Client.t(), integer()) :: Tesla.Env.result()
+  def remove_contact_from_blacklist(client, contact_id),
+    do: Tesla.delete(client, "/blacklist/contact/#{contact_id}")
+
   @spec update_contact(Tesla.Client.t(), integer(), contact_params()) :: Tesla.Env.result()
   def update_contact(client, contact_id, params) do
     Tesla.put(client, "/list/contact/#{contact_id}", params)
