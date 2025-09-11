@@ -4,8 +4,8 @@ defmodule SMSFactor.MixProject do
   def project do
     [
       app: :sms_factor,
-      version: "0.3.0",
-      elixir: "~> 1.10",
+      version: "0.4.0",
+      elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
@@ -29,10 +29,9 @@ defmodule SMSFactor.MixProject do
 
   defp deps do
     [
-      {:tesla, "~> 1.4.0"},
-      {:hackney, "~> 1.17.0"},
-      {:jason, ">= 1.0.0"},
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:tesla, "~> 1.0"},
+      {:jason, "~> 1.0"},
+      {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.24", only: :dev, runtime: false}
     ]
   end
