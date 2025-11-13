@@ -12,7 +12,7 @@ by adding `sms_factor_elixir` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:sms_factor_elixir, "~> 0.3.0"}
+    {:sms_factor_elixir, "~> 0.5.0"}
   ]
 end
 ```
